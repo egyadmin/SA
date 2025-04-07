@@ -1,0 +1,56 @@
+# Core dependencies
+flask==2.3.3
+gradio==4.13.0
+langchain==0.0.335
+openai==1.3.0
+anthropic==0.5.0
+python-dotenv==1.0.0
+requests==2.31.0
+
+# File processing
+PyPDF2==3.0.1
+python-docx==0.8.11
+openpyxl==3.1.2
+pillow==10.0.0
+pytesseract==0.3.10
+ezdxf==1.1.0
+
+# Web browsing and scraping
+selenium==4.15.2
+beautifulsoup4==4.12.2
+webdriver-manager==4.0.1
+
+# Data processing and visualization
+pandas==2.1.1
+numpy==1.26.0
+matplotlib==3.8.0
+seaborn==0.13.0
+plotly==5.18.0
+
+# Audio and video processing
+pydub==0.25.1
+moviepy==1.0.3
+SpeechRecognition==3.10.0
+ffmpeg-python==0.2.0
+torch==2.1.0
+torchaudio==2.1.0
+transformers==4.35.0
+
+# Desktop integration
+pyautogui==0.9.54
+pygetwindow==0.0.9
+pyperclip==1.8.2
+pyscreenshot==3.1
+
+# Multilingual support
+langdetect==1.0.9
+googletrans==4.0.0-rc1
+sacremoses==0.0.53
+sentencepiece==0.1.99
+
+# Database
+sqlalchemy==2.0.23
+sqlite3==0.0.1
+
+# Hugging Face integration
+huggingface-hub==0.19.4

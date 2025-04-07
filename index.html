@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مانوس كلون - مساعد الذكاء الاصطناعي</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <h1>مانوس كلون</h1>
+                <p>مساعد الذكاء الاصطناعي المتكامل</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" class="active" data-tab="chat"><i class="fas fa-comments"></i> المحادثة</a></li>
+                    <li><a href="#" data-tab="files"><i class="fas fa-file"></i> الملفات</a></li>
+                    <li><a href="#" data-tab="tools"><i class="fas fa-tools"></i> الأدوات</a></li>
+                    <li><a href="#" data-tab="settings"><i class="fas fa-cog"></i> الإعدادات</a></li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <button class="new-chat-btn"><i class="fas fa-plus"></i> محادثة جديدة</button>
+                <div class="user-profile">
+                    <img src="{{ url_for('static', filename='img/user-avatar.png') }}" alt="صورة المستخدم">
+                    <span>المستخدم</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <div class="tab-content active" id="chat-tab">
+                <div class="chat-container">
+                    <div class="sidebar">
+                        <div class="sidebar-header">
+                            <h3>المحادثات</h3>
+                            <button class="clear-chats-btn"><i class="fas fa-trash"></i></button>
+                        </div>
+                        <div class="conversations-list">
+                            <!-- ستتم إضافة المحادثات هنا ديناميكياً -->
+                        </div>
+                    </div>
+                    
+                    <div class="chat-main">
+                        <div class="chat-messages" id="chat-messages">
+                            <div class="welcome-message">
+                                <h2>مرحباً بك في مانوس كلون!</h2>
+                                <p>مساعد الذكاء الاصطناعي المتكامل الذي يمكنه مساعدتك في مجموعة متنوعة من المهام.</p>
+                                <div class="capabilities">
+                                    <div class="capability">
+                                        <i class="fas fa-file-alt"></i>
+                                        <h3>معالجة الملفات</h3>
+                                        <p>قراءة وتحليل ملفات متنوعة مثل PDF وWord وExcel</p>
+                                    </div>
+                                    <div class="capability">
+                                        <i class="fas fa-globe"></i>
+                                        <h3>تصفح الويب</h3>
+                                        <p>البحث وجمع المعلومات من الإنترنت</p>
+                                    </div>
+                                    <div class="capability">
+                                        <i class="fas fa-chart-bar"></i>
+                                        <h3>تحليل البيانات</h3>
+                                        <p>تحليل البيانات وإنشاء الرسوم البيانية</p>
+                                    </div>
+                                    <div class="capability">
+                                        <i class="fas fa-headphones"></i>
+                                        <h3>معالجة الصوت والفيديو</h3>
+                                        <p>تحويل الصوت إلى نص ومعالجة ملفات الفيديو</p>
+                                    </div>
+                                    <div class="capability">
+                                        <i class="fas fa-desktop"></i>
+                                        <h3>التكامل مع سطح المكتب</h3>
+                                        <p>التفاعل مع تطبيقات سطح المكتب</p>
+                                    </div>
+                                    <div class="capability">
+                                        <i class="fas fa-language"></i>
+                                        <h3>دعم اللغات المتعددة</h3>
+                                        <p>الترجمة وتحليل النصوص بلغات مختلفة</p>
+                                    </div>
+                                </div>
+                                <p class="start-prompt">ابدأ بكتابة سؤالك أو طلبك في مربع الإدخال أدناه.</p>
+                            </div>
+                            <!-- ستتم إضافة رسائل المحادثة هنا ديناميكياً -->
+                        </div>
+                        
+                        <div class="chat-input-container">
+                            <div class="chat-input-wrapper">
+                                <textarea id="chat-input" placeholder="اكتب رسالتك هنا..." rows="1"></textarea>
+                                <div class="input-buttons">
+                                    <button class="attach-btn"><i class="fas fa-paperclip"></i></button>
+                                    <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+                                </div>
+                            </div>
+                            <div class="file-upload-preview" style="display: none;">
+                                <div class="file-list">
+                                    <!-- ستتم إضافة الملفات المرفقة هنا ديناميكياً -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="status-panel">
+                        <div class="status-header">
+                            <h3>حالة المعالجة</h3>
+                            <button class="toggle-status-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="status-content">
+                            <div class="current-task">
+                                <h4>المهمة الحالية</h4>
+                                <p id="current-task-text">لا توجد مهمة نشطة</p>
+                            </div>
+                            <div class="status-updates">
+                                <h4>تحديثات الحالة</h4>
+                                <div id="status-updates-list">
+                                    <!-- ستتم إضافة تحديثات الحالة هنا ديناميكياً -->
+                                </div>
+                            </div>
+                            <div class="tools-used">
+                                <h4>الأدوات المستخدمة</h4>
+                                <div id="tools-used-list">
+                                    <!-- ستتم إضافة الأدوات المستخدمة هنا ديناميكياً -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="files-tab">
+                <div class="files-container">
+                    <div class="files-header">
+                        <h2>إدارة الملفات</h2>
+                        <div class="files-actions">
+                            <button class="upload-file-btn"><i class="fas fa-upload"></i> رفع ملف</button>
+                            <button class="create-folder-btn"><i class="fas fa-folder-plus"></i> إنشاء مجلد</button>
+                        </div>
+                    </div>
+                    <div class="files-browser">
+                        <div class="files-sidebar">
+                            <div class="files-navigation">
+                                <h3>التنقل</h3>
+                                <ul>
+                                    <li><a href="#" class="active"><i class="fas fa-home"></i> الرئيسية</a></li>
+                                    <li><a href="#"><i class="fas fa-file-upload"></i> الملفات المرفوعة</a></li>
+                                    <li><a href="#"><i class="fas fa-file-download"></i> الملفات المنزلة</a></li>
+                                    <li><a href="#"><i class="fas fa-trash"></i> سلة المحذوفات</a></li>
+                                </ul>
+                            </div>
+                            <div class="storage-info">
+                                <h3>معلومات التخزين</h3>
+                                <div class="storage-bar">
+                                    <div class="storage-used" style="width: 35%;"></div>
+                                </div>
+                                <p>35% مستخدم (350MB من 1GB)</p>
+                            </div>
+                        </div>
+                        <div class="files-main">
+                            <div class="files-breadcrumb">
+                                <ul>
+                                    <li><a href="#">الرئيسية</a></li>
+                                </ul>
+                            </div>
+                            <div class="files-list">
+                                <!-- ستتم إضافة الملفات والمجلدات هنا ديناميكياً -->
+                                <div class="file-item folder">
+                                    <div class="file-icon"><i class="fas fa-folder"></i></div>
+                                    <div class="file-info">
+                                        <div class="file-name">المستندات</div>
+                                        <div class="file-meta">5 عناصر</div>
+                                    </div>
+                                </div>
+                                <div class="file-item folder">
+                                    <div class="file-icon"><i class="fas fa-folder"></i></div>
+                                    <div class="file-info">
+                                        <div class="file-name">الصور</div>
+                                        <div class="file-meta">12 عناصر</div>
+                                    </div>
+                                </div>
+                                <div class="file-item file">
+                                    <div class="file-icon"><i class="fas fa-file-pdf"></i></div>
+                                    <div class="file-info">
+                                        <div class="file-name">تقرير.pdf</div>
+                                        <div class="file-meta">2.5MB - تم التعديل قبل 3 أيام</div>
+                                    </div>
+                                </div>
+                                <div class="file-item file">
+                                    <div class="file-icon"><i class="fas fa-file-word"></i></div>
+                                    <div class="file-info">
+                                        <div class="file-name">مستند.docx</div>
+                                        <div class="file-meta">1.2MB - تم التعديل قبل يوم</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="file-preview">
+                            <div class="file-preview-header">
+                                <h3>معاينة الملف</h3>
+                                <button class="close-preview-btn"><i class="fas fa-times"></i></button>
+                            </div>
+                            <div class="file-preview-content">
+                                <div class="file-preview-placeholder">
+                                    <i class="fas fa-file"></i>
+                                    <p>اختر ملفاً للمعاينة</p>
+                                </div>
+                                <!-- ستتم إضافة معاينة الملف هنا ديناميكياً -->
+                            </div>
+                            <div class="file-actions">
+                                <button class="download-btn"><i class="fas fa-download"></i> تنزيل</button>
+                                <button class="share-btn"><i class="fas fa-share-alt"></i> مشاركة</button>
+                                <button class="delete-btn"><i class="fas fa-trash"></i> حذف</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tools-tab">
+                <div class="tools-container">
+                    <div class="tools-header">
+                        <h2>الأدوات المتاحة</h2>
+                        <div class="tools-search">
+                            <input type="text" placeholder="البحث عن أداة...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="tools-grid">
+                        <div class="tool-category">
+                            <h3><i class="fas fa-file-alt"></i> أدوات الملفات</h3>
+                            <div class="tools-list">
+                                <div class="tool-item">
+                                    <div class="tool-icon"><i class="fas fa-file-pdf"></i></div>
+                                    <div class="tool-info">
+                                        <h4>قارئ PDF</h4>
+                                        <p>قراءة وتحليل ملفات PDF</p>
+                                    </div>
+                                </div>
+                                <div class="tool-item">
+                                    <div class="tool-icon"><i class="fas fa-file-word"></i></div>
+                                    <div class="tool-info">
+                                        <h4>قارئ Word</h4>
+                                        <p>قراءة وتحليل مستندات Word</p>
+                                    </div>
+                                </div>
+                                <div class="tool-item">
+                                    <div class="tool-icon"><i class="fas fa-file-excel"></i></div>
+                                    <div class="tool-info">
+                                        <h4>قارئ Excel</h4>
+                                        <p>قراءة وتحليل جداول البيانات</p>
+                                    </div>
+                                </div>
+                                <div class="tool-item">
+                                    <div class="tool-icon"><i class="fas fa-file-image"></i></div>
+                                    <div class="tool-info">
+                                        <h4>قارئ الصور</h4>
+                                        <p>استخراج النص من الصور</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tool-category">
+                            <h3><i class="fas fa-globe"></i> أدوات الويب</h3>
+                            <div class="tools-list">
+                                <div class="tool-item">
+                                    <div class="tool-icon"><i class="fas fa-search"></i></div>
+                                    <div class="tool-info">
+                                        <h4>البحث في الويب</h4>
+                                        <p>البحث عن معلومات على الإنترنت</p>
+                                    </div>
+                                </div>
+                                <div class="tool-item">
+                                    <div class="tool-icon"><i class="fas fa-newspaper"></i></div>
+                                    <div class="tool-info">
+                                        <h4>قارئ المقالات</h4>
+                                        <p>قراءة وتلخيص مقالات الويب</p>
+                                    </div>
+                                </div>
+                               
+(Content truncated due to size limit. Use line ranges to read in chunks)
